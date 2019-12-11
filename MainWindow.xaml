@@ -1,0 +1,18 @@
+﻿<Window x:Class="ChangeMaker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChangeMaker"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Button x:Name="SolveButton" Content="Solve" HorizontalAlignment="Left" Margin="686,69,0,0" VerticalAlignment="Top" Width="74" Click="SolveButton_Click"/>
+        <TextBox x:Name="coins" HorizontalAlignment="Left" Height="22" Margin="10,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
+        <Label Content="Avaible coins:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="270" FontSize="10"/>
+        <TextBox x:Name="Amount" HorizontalAlignment="Left" Height="22" Margin="442,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="334"/>
+        <Label Content="Desired amount:" HorizontalAlignment="Left" Margin="442,10,0,0" VerticalAlignment="Top" Width="334" FontSize="10"/>
+
+
+    </Grid>
+</Window>
