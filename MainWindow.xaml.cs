@@ -25,9 +25,19 @@ namespace ChangeMaker
             InitializeComponent();
         }
 
+        private void CallAlgoritms()
+        {
+            Alghoritms alghoritm = new Alghoritms();
+
+            alghoritm.PrepareParameters(coins.Text, amount.Text);
+            var output = alghoritm.CallGreedyAlghortim();
+
+            greedyOutput.Text = output;
+        }
+
         private void SolveButton_Click(object sender, RoutedEventArgs e)
         {
-
+            CallAlgoritms();
         }
     }
 }
