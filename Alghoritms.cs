@@ -33,6 +33,34 @@ namespace ChangeMaker
             return retTable;
         }
 
+        public Tuple<int[], int[]> DynamicAlghoritm(IEnumerable<int> coins, int amount)
+        {
+            int[] coinsCounter = new int[amount + 1];
+            int[] coinsIndex = new int[amount + 1];
+
+            coinsCounter[0] = coinsIndex[0] = 0;
+
+            for (int i = 1; i < amount; ++i)
+            {
+                int opt = 0;
+
+                for (int j = 1; j <= coins.Count(); ++j)
+                {
+
+                    if(coins.ElementAt(j) <= i && (coinsCounter[i - coins.ElementAt(j)] <= coinsCounter[i - coins.ElementAt(opt)]))
+                    {
+                        opt = j;
+                    }
+                }
+
+                coinsCounter[i] = coinsCounter[i - coins.ElementAt(opt)] + 1;
+
+                coinsIndex[i] = coins.ElementAt(opt);
+            }
+
+            return new Tuple<int[], int[]>(coinsCounter, coinsIndex);
+        }
+
         internal void PrepareParameters(string coins, string amount)
         {
             if (coins is null)
@@ -70,6 +98,22 @@ namespace ChangeMaker
 
             return output;
 
+        }
+
+        public string CallDynamicAlghoritm()
+        {
+            var dynamicResult = DynamicAlghoritm(coinsTable, amount);
+
+            string output = string.Empty;
+
+            while(amount > 0)
+            {
+                var coin = coinsTable.ElementAt(dynamicResult.Item2[amount]);
+                amount -= coin;
+                output += $"{coin} -> {dynamicResult.Item1[amount]} {Environment.NewLine}";
+            }
+
+            return output;
         }
     }
 }

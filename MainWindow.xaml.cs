@@ -32,6 +32,9 @@ namespace ChangeMaker
             alghoritm.PrepareParameters(coins.Text, amount.Text);
             var output = alghoritm.CallGreedyAlghortim();
 
+            var output2 = alghoritm.CallDynamicAlghoritm();
+
+
             greedyOutput.Text = output;
         }
 
