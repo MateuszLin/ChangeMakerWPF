@@ -8,12 +8,12 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Button x:Name="SolveButton" Content="Solve" HorizontalAlignment="Left" Margin="686,69,0,0" VerticalAlignment="Top" Width="74" Click="SolveButton_Click"/>
-        <TextBox x:Name="coins" HorizontalAlignment="Left" Height="22" Margin="10,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Text="1 2 5 7 10 13 20 "/>
+        <TextBox x:Name="coins" HorizontalAlignment="Left" Height="22" Margin="10,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Text="1 3 4"/>
         <Label Content="Avaible coins:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="270" FontSize="10"/>
-        <TextBox x:Name="amount" HorizontalAlignment="Left" Height="22" Margin="442,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="334" Text="17"/>
+        <TextBox x:Name="amount" HorizontalAlignment="Left" Height="22" Margin="442,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="334" Text="6"/>
         <Label Content="Desired amount:" HorizontalAlignment="Left" Margin="442,10,0,0" VerticalAlignment="Top" Width="334" FontSize="10"/>
         <TextBox x:Name="greedyOutput" HorizontalAlignment="Left" Height="267" Margin="10,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" AcceptsReturn="True" IsEnabled="False"/>
-        <TextBox x:Name="greedyOutput_Copy" HorizontalAlignment="Left" Height="267" Margin="442,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" AcceptsReturn="True" IsEnabled="False"/>
+        <TextBox x:Name="dynamicOutput" HorizontalAlignment="Left" Height="267" Margin="442,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" AcceptsReturn="True" IsEnabled="False"/>
         <Label Content="Greedy output:&#xD;&#xA;" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" Width="270" FontSize="10"/>
         <Label Content="Dynamic output:&#xA;" HorizontalAlignment="Left" Margin="442,73,0,0" VerticalAlignment="Top" Width="270" FontSize="10" Height="30"/>
 

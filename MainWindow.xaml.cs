@@ -34,8 +34,8 @@ namespace ChangeMaker
 
             var output2 = alghoritm.CallDynamicAlghoritm();
 
-
             greedyOutput.Text = output;
+            dynamicOutput.Text = output2;
         }
 
         private void SolveButton_Click(object sender, RoutedEventArgs e)

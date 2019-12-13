@@ -40,11 +40,11 @@ namespace ChangeMaker
 
             coinsCounter[0] = coinsIndex[0] = 0;
 
-            for (int i = 1; i < amount; ++i)
+            for (int i = 1; i <= amount; i++)
             {
                 int opt = 0;
 
-                for (int j = 1; j <= coins.Count(); ++j)
+                for (int j = 1; j < coins.Count(); j++)
                 {
 
                     if(coins.ElementAt(j) <= i && (coinsCounter[i - coins.ElementAt(j)] <= coinsCounter[i - coins.ElementAt(opt)]))
@@ -55,7 +55,7 @@ namespace ChangeMaker
 
                 coinsCounter[i] = coinsCounter[i - coins.ElementAt(opt)] + 1;
 
-                coinsIndex[i] = coins.ElementAt(opt);
+                coinsIndex[i] = opt;
             }
 
             return new Tuple<int[], int[]>(coinsCounter, coinsIndex);
@@ -88,7 +88,7 @@ namespace ChangeMaker
             var greedyResult = GreedyAlghoritm(coinsTable, this.amount, new List<int>(retList));
 
             string output = string.Empty;
-            for (int i = 0; i < greedyResult.Count; i++)
+            for (int i = greedyResult.Count - 1; i >= 0 ; i--)
             {
                 if(greedyResult[i] != 0)
                 {
@@ -105,12 +105,22 @@ namespace ChangeMaker
             var dynamicResult = DynamicAlghoritm(coinsTable, amount);
 
             string output = string.Empty;
+            Dictionary<int, int> coinCount = new Dictionary<int, int>();
 
             while(amount > 0)
             {
                 var coin = coinsTable.ElementAt(dynamicResult.Item2[amount]);
                 amount -= coin;
-                output += $"{coin} -> {dynamicResult.Item1[amount]} {Environment.NewLine}";
+
+                if (coinCount.Keys.Contains(coin))
+                    coinCount[coin]++;
+                else
+                    coinCount[coin] = 1;
+            }
+
+            foreach (var item in coinCount.Keys)
+            {
+                output += $"{item} -> {coinCount[item]} {Environment.NewLine}";
             }
 
             return output;
