@@ -92,7 +92,7 @@ namespace ChangeMaker
             {
                 if(greedyResult[i] != 0)
                 {
-                    output += $"{coinsTable.ElementAt(i)} -> {greedyResult[i]} {Environment.NewLine}";
+                    output += AddToOutput(coinsTable.ElementAt(i), greedyResult[i]);
                 }
             }
 
@@ -120,10 +120,16 @@ namespace ChangeMaker
 
             foreach (var item in coinCount.Keys)
             {
-                output += $"{item} -> {coinCount[item]} {Environment.NewLine}";
+                output += AddToOutput(item, coinCount[item]);
             }
 
             return output;
+        }
+
+
+        private string AddToOutput(int item, int value)
+        {
+            return $"{item} x {value} {Environment.NewLine}";
         }
     }
 }
