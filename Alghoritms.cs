@@ -61,26 +61,23 @@ namespace ChangeMaker
             return new Tuple<int[], int[]>(coinsCounter, coinsIndex);
         }
 
-        internal void PrepareParameters(string coins, string amount)
+        internal bool PrepareParameters(string coins, string amount)
         {
-            if (coins is null)
+            if(!string.IsNullOrWhiteSpace(coins) && !string.IsNullOrWhiteSpace(amount))
             {
-                throw new ArgumentNullException(nameof(coins));
+                coinsTable = coins.Split(' ').Select(int.Parse).Cast<int>();
+                this.amount = Convert.ToInt32(amount);
+                retList = new List<int>();
+
+                for (int i = 0; i < coinsTable.Count(); i++)
+                {
+                    retList.Add(0);
+                }
+
+                return true;
             }
 
-            if (amount is null)
-            {
-                throw new ArgumentNullException(nameof(amount));
-            }
-
-            coinsTable = coins.Split(' ').Select(int.Parse).Cast<int>();
-            this.amount = Convert.ToInt32(amount);
-            retList = new List<int>();
-
-            for (int i = 0; i < coinsTable.Count(); i++)
-            {
-                retList.Add(0);
-            }
+            return false;
         }
 
         public string CallGreedyAlghortim()

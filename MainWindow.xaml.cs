@@ -28,14 +28,15 @@ namespace ChangeMaker
         private void CallAlgoritms()
         {
             Alghoritms alghoritm = new Alghoritms();
+            if(alghoritm.PrepareParameters(coins.Text, amount.Text))
+            {
+                var output = alghoritm.CallGreedyAlghortim();
+                var output2 = alghoritm.CallDynamicAlghoritm();
 
-            alghoritm.PrepareParameters(coins.Text, amount.Text);
-            var output = alghoritm.CallGreedyAlghortim();
+                greedyOutput.Text = output;
+                dynamicOutput.Text = output2;
+            }
 
-            var output2 = alghoritm.CallDynamicAlghoritm();
-
-            greedyOutput.Text = output;
-            dynamicOutput.Text = output2;
         }
 
         private void SolveButton_Click(object sender, RoutedEventArgs e)
