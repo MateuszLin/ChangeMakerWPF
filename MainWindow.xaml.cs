@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ChangeMaker
 {
@@ -27,16 +17,36 @@ namespace ChangeMaker
 
         private void CallAlgoritms()
         {
-            Alghoritms alghoritm = new Alghoritms();
-            if(alghoritm.PrepareParameters(coins.Text, amount.Text))
+            string coinsStr = coins.Text, amountStr = amount.Text;
+
+            SolveButton.IsEnabled = false;
+
+            Task.Run(() =>
             {
-                var output = alghoritm.CallGreedyAlghortim();
-                var output2 = alghoritm.CallDynamicAlghoritm();
+                Debug.WriteLine("Task started");
+                Alghoritms alghoritm = new Alghoritms();
+                if (alghoritm.PrepareParameters(coinsStr, amountStr))
+                {
+                    var output = alghoritm.CallGreedyAlghortim();
+                    var output2 = alghoritm.CallDynamicAlghoritm();
 
-                greedyOutput.Text = output;
-                dynamicOutput.Text = output2;
-            }
+                    greedyOutput.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        greedyOutput.Text = output;
+                    }));
 
+                    dynamicOutput.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        dynamicOutput.Text = output2;
+                    }));
+
+                    SolveButton.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        SolveButton.IsEnabled = true;
+                    }));
+
+                }
+            });
         }
 
         private void SolveButton_Click(object sender, RoutedEventArgs e)
